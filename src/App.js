@@ -19,21 +19,37 @@
 import React, { Component } from 'react';
 import shuffledDeck from './ShuffledDeck';
 import './App.css';
+import card_back from './card_back.jpg'
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      hand: ["face_down", "face_down", "face_down", "face_down", "face_down"]
+      hand: [card_back, card_back, card_back, card_back, card_back]
     }
   }
+
+shuffledDeck() {
+  let newDeck = shuffledDeck()
+  this.setState({
+    hand: ["http://golearntocode.com/images/cards/"+newDeck[0]+".png","http://golearntocode.com/images/cards/"+newDeck[1]+".png","http://golearntocode.com/images/cards/"+newDeck[2]+".png","http://golearntocode.com/images/cards/"+newDeck[3]+".png","http://golearntocode.com/images/cards/"+newDeck[4]+".png"]
+  })
+
+}
+
   render() {
     // array to hold JSX elements
-    let cards = []; 
+    let cards= [this.state.hand[0],this.state.hand[1],this.state.hand[2],this.state.hand[3], this.state.hand[4]]
     return (
       <div className="App">
-        {cards}     
-        <p><button>Deal a new hand</button></p>
+        <h1>
+          <img src={cards[0]} alt={card_back}/>
+          <img src={cards[1]} alt={card_back}/>
+          <img src={cards[2]} alt={card_back}/>
+          <img src={cards[3]} alt={card_back}/>
+          <img src={cards[4]} alt={card_back}/>
+        </h1>
+        <p><button href="#" onClick={()=>this.shuffledDeck()}>Deal a new hand</button></p>
       </div>
     );
   }
